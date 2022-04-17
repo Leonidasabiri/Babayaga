@@ -2,7 +2,9 @@
 class enemy
 {
     attacking = false;
-    follow_speed = 10;
+    follow_speed = 80;
+    max_dist = 100;
+    dist;
 
     constructor(x, y)
     {
@@ -16,8 +18,14 @@ class enemy
     }
     followplayer()
     {
-        this.x -=  (this.x - player.x) * this.follow_speed / 10000;
-        this.y -=  (this.y - player.y) * this.follow_speed / 10000;
+        let x = this.x - player.x;
+        let y = this.y - player.y;
+        this.dist = Math.sqrt((x * x) + (y * y));
+        if (this.dist > this.max_dist)
+        {
+            this.x -=  x * this.follow_speed / 10000;
+            this.y -=  y * this.follow_speed / 10000;
+        }
         this.drawenemy();
     }
 }
