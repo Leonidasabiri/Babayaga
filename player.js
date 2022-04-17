@@ -30,7 +30,7 @@ let player =
     },
     shoot: function()
     {
-
+        
     }
 }
 
@@ -43,5 +43,5 @@ function drawplayer()
 }
 
 window.addEventListener('keydown', function(e){
-   player.move(e);
+    player.move(e);
 });
