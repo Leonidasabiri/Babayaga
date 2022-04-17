@@ -1,11 +1,23 @@
 <html>
-    <canvas 
-        id = "canvas" 
-        width="800" 
-        height="800">
-    </canvas>
-    <link rel="stylesheet" href="ui.css">
-    <button class="button">Play</button>
+    <div>
+        <canvas 
+            id = "canvas" 
+            width="800" 
+            height="800">
+            <button class="button">Play</button>
+        </canvas>
+        <link rel="stylesheet" href="ui.css">
+        <button class="playbutton"
+                style="position: absolute; top:660px; left:320px;"
+                onclick="startgame()">
+                     Play
+        </button>
+        <button class="pausebutton"
+        style="position: absolute; top:50px; left:40px;"
+        onclick="pausegame()">
+             Pause
+        </button>
+    </div>
     <script src="player.js"></script>
     <script src="enemy.js"></script>
     <script src="walls.js"></script>

@@ -1,9 +1,8 @@
 
 class bullet
 {
-    speed = 20;
+    speed = 10;
     lifetime = 2;
-    dist;
     constructor(x, y)
     {
         this.x = x;
@@ -29,16 +28,6 @@ class bullet
         }
         this.x +=  (mousex - player.x) * this.speed / 100;
         this.y +=  (mousey - player.y) * this.speed / 100;
-        if (this.dist < 30)
-        {
-            if (enemies.length > 1)
-            {
-                enemies.shift();
-                bloodsplashes.push(new bloodsplash(this.x, this.y));
-            }
-            else
-                enemies.pop();
-        }
         this.draw();
     }
 }

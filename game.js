@@ -1,3 +1,5 @@
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
 
 let timer = 0;
 let time_between_shots = 0;
@@ -7,8 +9,9 @@ let bloodsplashes = [];
 let max_enemy_number = 3;
 let mousex, mousey;
 let max_bullet_number = 5;
-let dead_enemy_index = null;
+let dead_enemy_index = -1;
 let lastupdate = Date.now();
+let gamerunning = false;
 
 var e = new enemy(canvas.width, canvas.height);
 
@@ -23,10 +26,7 @@ function drawbackground()
 function drawblood()
 {
 	for (let i = 0; i < bloodsplashes.length ; i++)
-	{
 		bloodsplashes[i].draw();
-		console.log(i + " " + bloodsplashes[i].alpha);
-	}
 }
 
 function timerupdater()
@@ -50,27 +50,64 @@ function bulletupdate()
 
 function enemiesupdate()
 {
+	let dist;
+	let x;
+	let y;
 	for (let i = 0; i < enemies.length ; i++)
+	{
 		enemies[i].followplayer();
+		if (bullets.length > 0)
+		{
+			x = enemies[i].x - bullets[0].x;
+			y = enemies[i].y - bullets[0].y;
+			dist = Math.sqrt((x * x) + (y * y));
+			if (dist < 30)
+			{
+				dead_enemy_index = i;
+				console.log(dead_enemy_index);
+				bloodsplashes.push(new bloodsplash(enemies[i].x, enemies[i].y));
+			}
+		}
+	}
+}
+
+function startgame()
+{
+	gamerunning = true;
+}
+
+function pausegame()
+{
+	gamerunning = false;
 }
 
 function gameloop()
 {
+	ctx.clearRect(0,0,canvas.width,canvas.height);
 	let now = Date.now();
 	let dt = now - lastupdate;
 	lastupdate = now;
 	drawbackground();
 	drawplayer(dt);
-	enemiesupdate();
-	drawblood();
-	timerupdater();
-	bulletupdate();
+	if (gamerunning)
+	{
+		player.move(dt);
+		enemiesupdate();
+		bulletupdate();
+		timerupdater();
+		drawblood();
+	}
+	if (dead_enemy_index >=0)
+	{
+		enemies.splice(dead_enemy_index, 1);
+		dead_enemy_index = -1;
+	}
 	window.requestAnimationFrame(gameloop);
 }
 
 window.requestAnimationFrame(gameloop);
 canvas.addEventListener('mousedown', (e) => {
-	if (time_between_shots <= 0)
+	if (time_between_shots <= 0 && gamerunning)
 	{
 		bullets.push(new bullet(player.x, player.y, player.x - mousex, player.y - mousey));
 		if (bullets.length >= 2)
