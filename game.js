@@ -91,8 +91,6 @@ function gameovertext()
 	ctx.fillText('DeadAss', 350, 200, 720, 120);
 }
 
-
-
 function gameloop()
 {
 	ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -105,7 +103,10 @@ function gameloop()
 	enemiesupdate();
 	if (gamerunning)
 	{
-		spec_attack();
+		if (player.special_attack_capacity <= 10.0)
+			player.special_attack_capacity += 0.01;
+		if (player.special_realese && player.special_attack_capacity >= 10)
+			spec_attack();
 		if (player.health > 0)
 		{
 			player.move(dt);

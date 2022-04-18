@@ -8,7 +8,8 @@ let player =
 {
 	health: 10.0,
 	speed: 10.4,
-	special_attack_capacity: 10.0,
+	special_attack_capacity: 0.0,
+	special_realese: false,
 	x: canvas.width / 2,
 	y: canvas.height / 2,
 	vx: 0,
@@ -33,6 +34,15 @@ let player =
 			case "d":
 				this.vx = 0.01;
 				break;
+			case "f":
+				this.special_realese = true;
+				if (this.special_attack_capacity >= 10.0)
+				{
+					this.special_attack_capacity = 0.0;
+					for (let i = 0 ; i < megabullets_num; i++)
+						megabullets.push(new megabullet(player.x, player.y));
+				}
+				break;
 		}
 		this.vx = clamp(this.vx, this.minv, this.maxv);
 		this.vy = clamp(this.vy, this.minv, this.maxv);
@@ -43,6 +53,11 @@ let player =
 		this.y += this.vy * this.speed * dt;
 		this.x = clamp(this.x, 0, canvas.width - 30);
 		this.y = clamp(this.y, 0, canvas.height - 30);
+	},
+	special_shooy: function()
+	{
+		for (let i = 0 ; i < megabullets.length ; i++)
+        	megabullets[i].update(i);
 	}
 }
 
