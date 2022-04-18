@@ -13,7 +13,7 @@ class enemy
 	}
 	drawenemy()
 	{
-		ctx.fillStyle = "gray";
+		ctx.fillStyle = "pink";
 		ctx.fillRect(this.x, this.y, 30, 30);
 	}
 	followplayer()

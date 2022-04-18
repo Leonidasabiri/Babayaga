@@ -17,7 +17,7 @@ var e = new enemy(canvas.width, canvas.height);
 
 function drawbackground()
 {
-	ctx.fillStyle = "#F1DCCC";
+	ctx.fillStyle = "#F2DCCC";
 	ctx.beginPath();
 	ctx.rect(0, 0, canvas.width, canvas.height);
 	ctx.fill();
@@ -26,7 +26,10 @@ function drawbackground()
 function drawblood()
 {
 	for (let i = 0; i < bloodsplashes.length ; i++)
+	{
 		bloodsplashes[i].draw();
+		console.log(ctx.fillStyle);
+	}
 }
 
 function timerupdater()
@@ -92,10 +95,10 @@ function gameloop()
 	if (gamerunning)
 	{
 		player.move(dt);
-		enemiesupdate();
 		bulletupdate();
 		timerupdater();
 		drawblood();
+		enemiesupdate();
 	}
 	if (dead_enemy_index >=0)
 	{
