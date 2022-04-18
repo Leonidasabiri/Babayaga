@@ -86,10 +86,12 @@ function pausegame()
 
 function gameovertext()
 {
-	ctx.font = '48px Courier New';
+	ctx.font = '48px Impact, fantasy';
 	ctx.fillStyle = 'red';
-	ctx.fillText('DeadAss', 350, 400);
+	ctx.fillText('DeadAss', 350, 200, 720, 120);
 }
+
+
 
 function gameloop()
 {
@@ -98,18 +100,23 @@ function gameloop()
 	let dt = now - lastupdate;
 	lastupdate = now;
 	drawbackground();
-	drawplayer(dt);
+	if (player.health > 0)
+		drawplayer(dt);
 	enemiesupdate();
-	healthbar.updatehealth();
 	if (gamerunning)
 	{
-		player.move(dt);
-		bulletupdate();
+		spec_attack();
+		if (player.health > 0)
+		{
+			player.move(dt);
+			specialbar.updatespecialbar();
+			healthbar.updatehealth();
+			bulletupdate();
+			drawblood();
+			timerupdater();
+		}
 		if (player.health <= 0)
 			gameovertext();
-		console.log(player.health);
-		drawblood();
-		timerupdater();
 	}
 	if (dead_enemy_index >=0)
 	{
@@ -121,9 +128,9 @@ function gameloop()
 
 window.requestAnimationFrame(gameloop);
 canvas.addEventListener('mousedown', (e) => {
-	if (time_between_shots <= 0 && gamerunning)
+	if (time_between_shots <= 0 && gamerunning && player.health > 0)
 	{
-		bullets.push(new bullet(player.x, player.y, player.x - mousex, player.y - mousey));
+		bullets.push(new bullet(player.x, player.y));
 		if (bullets.length >= 2)
 			bullets.pop();
 		bullets[0].x = player.x;

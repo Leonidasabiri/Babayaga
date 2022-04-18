@@ -4,16 +4,23 @@
             id = "canvas" 
             width="800" 
             height="800">
-            <button class="button">Play</button>
+        </canvas>
+        <canvas id="healthbar"
+                width="800"
+                height="800">
+        </canvas>
+        <canvas id="specialbar"
+                width="800"
+                height="800">
         </canvas>
         <link rel="stylesheet" href="ui.css">
         <button class="playbutton"
-                style="position: absolute; top:660px; left:320px;"
+                style="position: absolute; top:640px; left:320px;"
                 onclick="startgame()">
                      Play
         </button>
         <button class="pausebutton"
-        style="position: absolute; top:50px; left:440px;"
+        style="position: absolute; top:20px; left:640px;"
         onclick="pausegame()">
              Pause
         </button>
@@ -24,6 +31,7 @@
     <script src="blood.js"></script>
     <script src="bullet.js"></script>
     <script src="healthbar.js"></script>
+    <script src="special_attack.js"></script>
     <script src="game.js"></script>
     <script src="audio.js"></script>
 </html>

@@ -3,7 +3,7 @@ class enemy
 {
 	attacking = false;
 	follow_speed = 80;
-	max_dist = 200;
+	max_dist = 100;
 	dist;
 		
 	constructor(x, y)
@@ -29,7 +29,7 @@ class enemy
 		else
 		{
 			if (player.health >= 0)
-				player.health -= 0.01;
+				player.health -= 0.006;
 		}
 		this.drawenemy();
     }

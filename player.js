@@ -8,6 +8,7 @@ let player =
 {
 	health: 10.0,
 	speed: 10.4,
+	special_attack_capacity: 10.0,
 	x: canvas.width / 2,
 	y: canvas.height / 2,
 	vx: 0,
@@ -15,24 +16,22 @@ let player =
 	minv: -0.05,
 	maxv: 0.05,
 	dead: this.health > 0 ? true : false,
-	talking: false,
 	moveangle : 1,
-	angle: 0,
 	input : function(e)
 	{
 		switch (e.key)
 		{
 			case "w":
-				this.vy -= 0.001;
+				this.vy = -0.01;
 				break;
 			case "s":
-				this.vy += 0.001;
+				this.vy = 0.01;
 				break;
 			case "a":
-				this.vx -= 0.001;
+				this.vx = -0.01;
 				break;
 			case "d":
-				this.vx += 0.001;
+				this.vx = 0.01;
 				break;
 		}
 		this.vx = clamp(this.vx, this.minv, this.maxv);
@@ -49,6 +48,7 @@ let player =
 
 function drawplayer(dt)
 {
+	console.log(player.vx);
 	ctx.fillStyle = "black";
 	ctx.beginPath();
 	ctx.rect(player.x, player.y, 30, 30);
@@ -57,4 +57,16 @@ function drawplayer(dt)
 
 window.addEventListener('keydown', (e) => {
 	player.input(e);
+});
+
+window.addEventListener('keyup', (e) => 
+{
+	// if (player.vx < 0)
+	// 	player.vx += 0.05;
+	// else if (player.vx > 0)
+	// 	player.vx -= 0.05;
+	// if (player.vy < 0)
+	// 	player.vy += 0.05;
+	// else if (player.vy > 0)
+	// 	player.vy -= 0.05;
 });
