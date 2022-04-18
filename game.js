@@ -28,7 +28,6 @@ function drawblood()
 	for (let i = 0; i < bloodsplashes.length ; i++)
 	{
 		bloodsplashes[i].draw();
-		console.log(ctx.fillStyle);
 	}
 }
 
@@ -58,7 +57,9 @@ function enemiesupdate()
 	let y;
 	for (let i = 0; i < enemies.length ; i++)
 	{
-		enemies[i].followplayer();
+		enemies[i].drawenemy();
+		if (gamerunning)
+			enemies[i].followplayer();
 		if (bullets.length > 0)
 		{
 			x = enemies[i].x - bullets[0].x;
@@ -67,7 +68,6 @@ function enemiesupdate()
 			if (dist < 30)
 			{
 				dead_enemy_index = i;
-				console.log(dead_enemy_index);
 				bloodsplashes.push(new bloodsplash(enemies[i].x, enemies[i].y));
 			}
 		}
@@ -84,6 +84,13 @@ function pausegame()
 	gamerunning = false;
 }
 
+function gameovertext()
+{
+	ctx.font = '48px Courier New';
+	ctx.fillStyle = 'red';
+	ctx.fillText('DeadAss', 350, 400);
+}
+
 function gameloop()
 {
 	ctx.clearRect(0,0,canvas.width,canvas.height);
@@ -92,13 +99,17 @@ function gameloop()
 	lastupdate = now;
 	drawbackground();
 	drawplayer(dt);
+	enemiesupdate();
+	healthbar.updatehealth();
 	if (gamerunning)
 	{
 		player.move(dt);
 		bulletupdate();
-		timerupdater();
+		if (player.health <= 0)
+			gameovertext();
+		console.log(player.health);
 		drawblood();
-		enemiesupdate();
+		timerupdater();
 	}
 	if (dead_enemy_index >=0)
 	{

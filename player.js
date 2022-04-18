@@ -6,6 +6,7 @@ function clamp(vx, minv, maxv)
 
 let player = 
 {
+	health: 10.0,
 	speed: 10.4,
 	x: canvas.width / 2,
 	y: canvas.height / 2,
@@ -13,7 +14,7 @@ let player =
 	vy: 0,
 	minv: -0.05,
 	maxv: 0.05,
-	dead: false,
+	dead: this.health > 0 ? true : false,
 	talking: false,
 	moveangle : 1,
 	angle: 0,

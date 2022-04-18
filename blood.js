@@ -21,5 +21,6 @@ class bloodsplash
 		ctx.rect(this.x, this.y, this.width, this.height);
 		ctx.fillStyle = "rgba(255,0,0," + this.alpha + ")";
 		ctx.fill();
+		this.fade();
 	}
 }

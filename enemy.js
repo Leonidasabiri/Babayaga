@@ -26,6 +26,11 @@ class enemy
 			this.x -=  x * this.follow_speed / 10000;
 			this.y -=  y * this.follow_speed / 10000;
 		}
+		else
+		{
+			if (player.health >= 0)
+				player.health -= 0.01;
+		}
 		this.drawenemy();
     }
 }
