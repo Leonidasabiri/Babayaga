@@ -38,13 +38,13 @@ let specialbar =
 {
     updatespecialbar: function()
     {
-        ctx.fillStyle = "orange";
-        ctx.beginPath();
-        ctx.rect(10, 10, player.special_attack_capacity * 22, 30);
-        ctx.fill();
         ctx.fillStyle = "gray";
         ctx.beginPath();
         ctx.rect(10, 60, 220, 30);
+        ctx.fill();
+        ctx.fillStyle = "orange";
+        ctx.beginPath();
+        ctx.rect(10, 60, player.special_attack_capacity * 22, 30);
         ctx.fill();
     }
 };

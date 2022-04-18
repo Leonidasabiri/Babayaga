@@ -5,13 +5,13 @@ let healthbar =
 {
     updatehealth: function()
     {
-        healthcontext.fillStyle = "gray";
-        healthcontext.beginPath();
-        healthcontext.rect(10, 10, 220, 30);
-        healthcontext.fill();
-        healthcontext.fillStyle = "red";
-        healthcontext.beginPath();
-        healthcontext.rect(10, 10, player.health * 22, 30);
-        healthcontext.fill();
+        ctx.fillStyle = "gray";
+        ctx.beginPath();
+        ctx.rect(10, 10, 220, 30);
+        ctx.fill();
+        ctx.fillStyle = "red";
+        ctx.beginPath();
+        ctx.rect(10, 10, player.health * 22, 30);
+        ctx.fill();
     }
 }

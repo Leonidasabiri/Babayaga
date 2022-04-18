@@ -26,9 +26,7 @@ function drawbackground()
 function drawblood()
 {
 	for (let i = 0; i < bloodsplashes.length ; i++)
-	{
-		bloodsplashes[i].draw();
-	}
+		bloodsplashes[i].draw(); 
 }
 
 function timerupdater()
@@ -104,11 +102,11 @@ function gameloop()
 	if (gamerunning)
 	{
 		if (player.special_attack_capacity <= 10.0)
-			player.special_attack_capacity += 0.01;
-		if (player.special_realese && player.special_attack_capacity >= 10)
-			spec_attack();
+			player.special_attack_capacity += 0.1;
 		if (player.health > 0)
 		{
+			if (player.special_realese)
+				spec_attack();
 			player.move(dt);
 			specialbar.updatespecialbar();
 			healthbar.updatehealth();
