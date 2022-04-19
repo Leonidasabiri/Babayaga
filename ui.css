@@ -11,6 +11,10 @@
     transition: 0.3s;
 }
 
+.hiddenButton {
+    visibility: hidden;
+}
+
 .pausebutton
 {
     background-color: #9b9b9b;

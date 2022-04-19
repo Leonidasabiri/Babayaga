@@ -1,37 +1,37 @@
 <html>
-    <div>
-        <canvas 
-            id = "canvas" 
-            width="800" 
+    <canvas 
+        id = "canvas" 
+        width="800" 
+        height="800">
+    </canvas>
+    <canvas id="ui"
+            width="800"
             height="800">
-        </canvas>
-        <canvas id="healthbar"
-                width="800"
-                height="800">
-        </canvas>
-        <canvas id="specialbar"
-                width="800"
-                height="800">
-        </canvas>
-        <link rel="stylesheet" href="ui.css">
-        <button class="playbutton"
-                style="position: absolute; top:640px; left:320px;"
-                onclick="startgame()">
-                     Play
-        </button>
-        <button class="pausebutton"
-        style="position: absolute; top:20px; left:640px;"
-        onclick="pausegame()">
-             Pause
-        </button>
+    </canvas>
+    <link rel="stylesheet" href="ui.css">
+    <button id ="play" class="playbutton"
+            style="position: absolute; top:640px; left:320px;"
+            onclick="startgame()">
+                    Play
+    </button>
+    <button class="pausebutton"
+    style="position: absolute; top:20px; left:640px;"
+    onclick="pausegame()">
+         Pause
+    </button>
+    <div id="progress">
+        <div id="percent">
+            Loading: <span id="p"></span></div>
+            <progress id="progress-bar" value="0"></progress>
+        </div>
     </div>
     <script src="player.js"></script>
     <script src="enemy.js"></script>
-    <script src="walls.js"></script>
     <script src="blood.js"></script>
     <script src="bullet.js"></script>
     <script src="healthbar.js"></script>
     <script src="special_attack.js"></script>
+    <script src="gameui.js"></script>
     <script src="game.js"></script>
     <script src="audio.js"></script>
 </html>

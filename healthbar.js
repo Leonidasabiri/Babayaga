@@ -1,5 +1,3 @@
-const healthcanvas = document.getElementById("healthbar");
-const healthcontext = healthcanvas.getContext('2d');
 
 let healthbar = 
 {

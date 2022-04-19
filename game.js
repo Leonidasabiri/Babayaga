@@ -12,6 +12,7 @@ let max_bullet_number = 5;
 let dead_enemy_index = -1;
 let lastupdate = Date.now();
 let gamerunning = false;
+let kills = 0;
 
 var e = new enemy(canvas.width, canvas.height);
 
@@ -63,9 +64,10 @@ function enemiesupdate()
 			x = enemies[i].x - bullets[0].x;
 			y = enemies[i].y - bullets[0].y;
 			dist = Math.sqrt((x * x) + (y * y));
-			if (dist < 30)
+			if (dist < 30 || (megabullets.length > 0 && dist <= megabullets[0].dist))
 			{
 				dead_enemy_index = i;
+				kills++;
 				bloodsplashes.push(new bloodsplash(enemies[i].x, enemies[i].y));
 			}
 		}
@@ -82,11 +84,18 @@ function pausegame()
 	gamerunning = false;
 }
 
+function killstext()
+{
+	ctx.font = '48px Impact, fantasy';
+	ctx.fillStyle = 'red';
+	ctx.fillText(kills, 400, 100, 520, 120);
+}
+
 function gameovertext()
 {
 	ctx.font = '48px Impact, fantasy';
 	ctx.fillStyle = 'red';
-	ctx.fillText('DeadAss', 350, 200, 720, 120);
+	ctx.fillText('Dead', 350, 200, 720, 120);
 }
 
 function gameloop()
@@ -95,6 +104,7 @@ function gameloop()
 	let now = Date.now();
 	let dt = now - lastupdate;
 	lastupdate = now;
+	drawblood();
 	drawbackground();
 	if (player.health > 0)
 		drawplayer(dt);
@@ -111,11 +121,12 @@ function gameloop()
 			specialbar.updatespecialbar();
 			healthbar.updatehealth();
 			bulletupdate();
-			drawblood();
 			timerupdater();
 		}
 		if (player.health <= 0)
 			gameovertext();
+		else
+			killstext();
 	}
 	if (dead_enemy_index >=0)
 	{
@@ -139,3 +150,4 @@ canvas.addEventListener('mousedown', (e) => {
 		mousey = e.clientY;
 	}
 });
+

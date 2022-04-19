@@ -1,6 +1,3 @@
-const specialcanvas = document.getElementById("specialbar");
-const specialcontext = specialcanvas.getContext('2d');
-
 let megabullets = [];
 let megabullets_num = 45;
 
@@ -8,6 +5,7 @@ class megabullet
 {
     speed = 10.0;
     lifetime = 2;
+    dist;
     constructor(x, y)
     {
         this.x = x;
@@ -22,6 +20,9 @@ class megabullet
     }
     update(i)
     {
+        let x = this.x - player.x;
+        let y = this.y - player.y;
+        this.dist = Math.sqrt((x * x) + (y * y));
         this.x +=  this.speed * Math.cos(i * 5);
         this.y +=  this.speed * Math.sin(i * 5);
         this.draw();
