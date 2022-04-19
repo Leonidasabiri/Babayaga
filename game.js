@@ -27,7 +27,7 @@ function drawbackground()
 function drawblood()
 {
 	for (let i = 0; i < bloodsplashes.length ; i++)
-		bloodsplashes[i].draw(); 
+		bloodsplashes[i].draw();
 }
 
 function timerupdater()
@@ -54,24 +54,35 @@ function enemiesupdate()
 	let dist;
 	let x;
 	let y;
-	for (let i = 0; i < enemies.length ; i++)
+	let x_p;
+	let y_p;
+	let dist_from_player;
+	let got_special_attack = false;
+	for (let i = 0; i < enemies.length; i++)
 	{
 		enemies[i].drawenemy();
 		if (gamerunning)
 			enemies[i].followplayer();
+		x_p = enemies[i].x - player.x;
+		y_p = enemies[i].y - player.y;
+		dist_from_player = Math.sqrt((x_p * x_p) + (y_p * y_p));
 		if (bullets.length > 0)
 		{
 			x = enemies[i].x - bullets[0].x;
 			y = enemies[i].y - bullets[0].y;
 			dist = Math.sqrt((x * x) + (y * y));
-			if (dist < 30 || (megabullets.length > 0 && dist <= megabullets[0].dist))
-			{
-				dead_enemy_index = i;
-				kills++;
-				bloodsplashes.push(new bloodsplash(enemies[i].x, enemies[i].y));
-			}
+		}
+		if (dist < 30 || (megabullets.length > 0 && dist_from_player <= megabullets[0].dist))
+		{
+			dead_enemy_index = i;
+			kills++;
+			bloodsplashes.push(new bloodsplash(enemies[i].x, enemies[i].y));
+			got_special_attack = true;
+			max_enemy_number++;
 		}
 	}
+	if (got_special_attack)
+		got_special_attack = false;
 }
 
 function startgame()
@@ -81,7 +92,7 @@ function startgame()
 
 function pausegame()
 {
-	gamerunning = false;
+	gamerunning = !gamerunning;
 }
 
 function killstext()
@@ -108,11 +119,13 @@ function gameloop()
 	drawbackground();
 	if (player.health > 0)
 		drawplayer(dt);
+	if (megabullets.length > 0 && megabullets[0].dist > 400)
+		megabullets = [];
 	enemiesupdate();
 	if (gamerunning)
 	{
 		if (player.special_attack_capacity <= 10.0)
-			player.special_attack_capacity += 0.1;
+			player.special_attack_capacity += 0.01;
 		if (player.health > 0)
 		{
 			if (player.special_realese)
@@ -150,4 +163,3 @@ canvas.addEventListener('mousedown', (e) => {
 		mousey = e.clientY;
 	}
 });
-

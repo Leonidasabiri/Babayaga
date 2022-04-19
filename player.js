@@ -63,7 +63,6 @@ let player =
 
 function drawplayer(dt)
 {
-	console.log(player.vx);
 	ctx.fillStyle = "black";
 	ctx.beginPath();
 	ctx.rect(player.x, player.y, 30, 30);
@@ -76,12 +75,6 @@ window.addEventListener('keydown', (e) => {
 
 window.addEventListener('keyup', (e) => 
 {
-	// if (player.vx < 0)
-	// 	player.vx += 0.05;
-	// else if (player.vx > 0)
-	// 	player.vx -= 0.05;
-	// if (player.vy < 0)
-	// 	player.vy += 0.05;
-	// else if (player.vy > 0)
-	// 	player.vy -= 0.05;
+	player.vx = 0;
+	player.vy = 0;
 });

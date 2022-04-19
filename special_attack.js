@@ -3,7 +3,7 @@ let megabullets_num = 45;
 
 class megabullet
 {
-    speed = 10.0;
+    speed = 27.0;
     lifetime = 2;
     dist;
     constructor(x, y)
