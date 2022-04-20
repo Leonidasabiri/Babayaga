@@ -1,3 +1,6 @@
+var megabullet_sprite = new Image();
+megabullet_sprite.src = 'sprites/megabullet.png';
+
 let megabullets = [];
 let megabullets_num = 45;
 
@@ -13,10 +16,7 @@ class megabullet
     }
     draw ()
     {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, 13, 0, Math.PI * 2);
-        ctx.fillStyle = "black";
-        ctx.fill();
+        ctx.drawImage(megabullet_sprite, this.x, this.y);
     }
     update(i)
     {

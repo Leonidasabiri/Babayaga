@@ -21,8 +21,8 @@ let player =
 	y: canvas.height / 2,
 	vx: 0,
 	vy: 0,
-	minv: -0.05,
-	maxv: 0.05,
+	minv: -0.5,
+	maxv: 0.5,
 	dead: this.health > 0 ? true : false,
 	moveangle : 1,
 	input : function(e)
@@ -30,16 +30,16 @@ let player =
 		switch (e.key)
 		{
 			case "w":
-				this.vy = -0.01;
+				this.vy -= 0.01;
 				break;
 			case "s":
-				this.vy = 0.01;
+				this.vy += 0.01;
 				break;
 			case "a":
-				this.vx = -0.01;
+				this.vx -= 0.01;
 				break;
 			case "d":
-				this.vx = 0.01;
+				this.vx += 0.01;
 				break;
 			case "f":
 				this.special_realese = true;
@@ -58,8 +58,8 @@ let player =
 	{
 		this.x += this.vx * this.speed * dt;
 		this.y += this.vy * this.speed * dt;
-		this.x = clamp(this.x, 0, canvas.width - 30);
-		this.y = clamp(this.y, 0, canvas.height - 30);
+		this.x = clamp(this.x, 0, canvas.width - 80);
+		this.y = clamp(this.y, 0, canvas.height - 80);
 	},
 	special_shooy: function()
 	{

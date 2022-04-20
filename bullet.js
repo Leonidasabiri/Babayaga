@@ -21,6 +21,8 @@ class bullet
     }
     draw ()
     {
+        bullet_sprite.width = 10;
+        bullet_sprite.height = 10;
         ctx.drawImage(bullet_sprite, this.x, this.y);
     }
     update()

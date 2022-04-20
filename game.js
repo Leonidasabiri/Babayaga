@@ -1,6 +1,9 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
+var background_image = new Image();
+background_image.src = 'sprites/ground.png';
+
 let timer = 0;
 let time_between_shots = 0;
 let enemies = [];
@@ -18,10 +21,11 @@ var e = new enemy(canvas.width, canvas.height);
 
 function drawbackground()
 {
-	ctx.fillStyle = "#F2DCCC";
-	ctx.beginPath();
-	ctx.rect(0, 0, canvas.width, canvas.height);
-	ctx.fill();
+	// ctx.fillStyle = "#F2DCCC";
+	// ctx.beginPath();
+	// ctx.rect(0, 0, canvas.width, canvas.height);
+	// ctx.fill();
+	ctx.drawImage(background_image, 0, 0, 1000, 1000);
 }
 
 function drawblood()
@@ -78,7 +82,8 @@ function enemiesupdate()
 			kills++;
 			bloodsplashes.push(new bloodsplash(enemies[i].x, enemies[i].y));
 			got_special_attack = true;
-			max_enemy_number++;
+			if (max_enemy_number < 7)
+				max_enemy_number++;
 		}
 	}
 	if (got_special_attack)

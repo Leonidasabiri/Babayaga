@@ -16,11 +16,11 @@ class enemy
 	}
 	drawenemy()
 	{   
-		if (this.x - player.x > 0)
-        {
-           	ctx.translate(this.x + 500, this.y);
-            ctx.scale(-1, 1);
-        }
+		// if (this.x - player.x > 0)
+        // {
+        //    	ctx.translate(this.x + enemy_sprite.width, this.y);
+        //     ctx.scale(-1, 1);
+        // }
 		ctx.drawImage(enemy_sprite, this.x, this.y);
 		ctx.setTransform(1,0,0,1,0,0);
 	}

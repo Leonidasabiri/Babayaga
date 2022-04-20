@@ -11,6 +11,20 @@
     transition: 0.3s;
 }
 
+.retrybutton
+{
+    background-color: #f77575;
+    padding: 15px 32px;
+    text-align: top;
+    font-family: 'Courier New', monospace;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 55px;
+    top: 50px;
+    transition: 0.3s;
+    visibility: hidden;
+}
+
 .hiddenButton {
     visibility: hidden;
 }
