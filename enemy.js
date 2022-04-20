@@ -1,3 +1,6 @@
+var enemy_sprite = new Image();
+
+enemy_sprite.src = 'sprites/demon.png';
 
 class enemy
 {
@@ -12,9 +15,14 @@ class enemy
 		this.y = y;
 	}
 	drawenemy()
-	{
-		ctx.fillStyle = "pink";
-		ctx.fillRect(this.x, this.y, 30, 30);
+	{   
+		if (this.x - player.x > 0)
+        {
+           	ctx.translate(this.x + 500, this.y);
+            ctx.scale(-1, 1);
+        }
+		ctx.drawImage(enemy_sprite, this.x, this.y);
+		ctx.setTransform(1,0,0,1,0,0);
 	}
 	followplayer()
 	{

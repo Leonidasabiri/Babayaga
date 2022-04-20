@@ -1,3 +1,10 @@
+var player_sprite = new Array();
+player_sprite[0] = new Image();
+player_sprite[1] = new Image();
+player_sprite[2] = new Image();
+player_sprite[0].src = 'sprites/FaceLeft.png';
+player_sprite[1].src = 'sprites/FaceBack.png';
+player_sprite[2].src = 'sprites/FaceFront.png';
 
 function clamp(vx, minv, maxv)
 {
@@ -63,10 +70,7 @@ let player =
 
 function drawplayer(dt)
 {
-	ctx.fillStyle = "black";
-	ctx.beginPath();
-	ctx.rect(player.x, player.y, 30, 30);
-	ctx.fill();
+	ctx.drawImage(player_sprite[0], player.x, player.y);
 }
 
 window.addEventListener('keydown', (e) => {

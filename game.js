@@ -153,7 +153,7 @@ window.requestAnimationFrame(gameloop);
 canvas.addEventListener('mousedown', (e) => {
 	if (time_between_shots <= 0 && gamerunning && player.health > 0)
 	{
-		bullets.push(new bullet(player.x, player.y));
+		bullets.push(new bullet(player.x, player.y, mousex - player.x, mousey - player.y));
 		if (bullets.length >= 2)
 			bullets.pop();
 		bullets[0].x = player.x;
